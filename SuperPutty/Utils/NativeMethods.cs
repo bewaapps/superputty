@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace SuperPutty.Utils
 {
@@ -38,7 +35,7 @@ namespace SuperPutty.Utils
         public const int
             ERROR_FILE_NOT_FOUND = 2,
             ERROR_ACCESS_DENIED = 5,
-            GWL_STYLE = (-16);
+            GWL_STYLE = -16;
             
         public const uint
             WH_KEYBOARD_LL = 0x000d,

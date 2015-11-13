@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace SuperPutty.Data
@@ -22,9 +19,7 @@ namespace SuperPutty.Data
 
         public bool IsReadOnly { get; set; }
 
-        public bool IsDefault {
-            get { return this.Name == SuperPuTTY.Settings.DefaultLayoutName;  } 
-        }
+        public bool IsDefault => this.Name == SuperPuTTY.Settings.DefaultLayoutName;
 
         public override string ToString()
         {

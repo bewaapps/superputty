@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SuperPutty
@@ -48,7 +43,7 @@ namespace SuperPutty
                 }
                 else if(totalFiles > 1)
                 {
-                    progressBarOverall.Value = (int)(((float)sofar / (float)total) * 100);
+                    progressBarOverall.Value = (int)((float)sofar / (float)total * 100);
                     labelOverallPct.Text = String.Format("{0}%", progressBarOverall.Value);
 
                     labelOverall.Text = String.Format("Transfered {0}/{1} kB (file {2} of {3})",

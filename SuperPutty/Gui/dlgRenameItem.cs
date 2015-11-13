@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SuperPutty.Gui
@@ -77,7 +72,7 @@ namespace SuperPutty.Gui
 
         private void folderForm_TextChanged(object sender, EventArgs e)
         {
-            btnOK.Enabled = (txtItemName.Text.Length > 0);
+            btnOK.Enabled = txtItemName.Text.Length > 0;
         }
 
     }

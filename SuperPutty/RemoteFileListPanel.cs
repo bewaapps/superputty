@@ -22,10 +22,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using SuperPutty.Data;
@@ -112,8 +109,7 @@ namespace SuperPutty
             if (this.IsDisposed) return;
             if (listView1.InvokeRequired)
             {
-                listView1.BeginInvoke((MethodInvoker)delegate()
-                {
+                listView1.BeginInvoke((MethodInvoker)delegate {
                     RefreshListView(new List<FileEntry>(files));
                 });
             }
@@ -272,8 +268,7 @@ namespace SuperPutty
                     Log.WarnFormat("Dropped Unknown {0} on {1}", file, target);
             }
             //Logger.Log("Total Bytes: {0} Total Files: {1}", totalBytes, fileCount);
-            frmTransferStatus frmStatus = new frmTransferStatus();
-            frmStatus.Text = "Uploading files to " + m_Session.SessionName;
+            frmTransferStatus frmStatus = new frmTransferStatus {Text = "Uploading files to " + m_Session.SessionName};
             frmStatus.Show(m_DockPanel, DockState.DockBottom);
 
             TransferUpdateCallback callback = delegate(bool fileComplete, bool cancelTransfer, FileTransferStatus status)

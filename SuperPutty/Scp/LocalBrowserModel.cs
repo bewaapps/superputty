@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using log4net;
 using System.IO;
 using SuperPutty.Data;
@@ -51,9 +48,11 @@ namespace SuperPutty.Scp
                 if (newDir.Parent != null)
                 {
                     // has valid parent dir
-                    BrowserFileInfo bfiParent = new BrowserFileInfo(newDir.Parent);
-                    bfiParent.Name = "..";
-                    bfiParent.Type = FileType.ParentDirectory;
+                    BrowserFileInfo bfiParent = new BrowserFileInfo(newDir.Parent)
+                    {
+                        Name = "..",
+                        Type = FileType.ParentDirectory
+                    };
                     result.Add(bfiParent);
                 }
                 else

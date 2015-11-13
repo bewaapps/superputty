@@ -58,9 +58,11 @@ namespace SuperPutty
         public void MakeRequest(string url, Action<bool, string> callback)
         {
             WebRequest request = WebRequest.Create(url);
-            RequestState state = new RequestState();
-            state.Request = request;
-            state.Callback = callback;
+            RequestState state = new RequestState
+            {
+                Request = request,
+                Callback = callback
+            };
             ((HttpWebRequest)request).UserAgent = "SuperPuTTY/" + Assembly.GetExecutingAssembly().GetName().Version;
 
             IAsyncResult result = (IAsyncResult)request.BeginGetResponse(new AsyncCallback(RespCallback), state);     
@@ -134,9 +136,8 @@ namespace SuperPutty
                 if (rs.RequestData.Length > 0)
                 {
                     //  Display data to the console.
-                    string strContent;
-                    strContent = rs.RequestData.ToString();                    
-                    rs.Callback(true, strContent);                    
+                    string strContent = rs.RequestData.ToString();
+                    rs.Callback(true, strContent);
                 }
                 // Close down the response stream.
                 responseStream.Close();

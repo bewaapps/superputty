@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SuperPutty.Data;
 using log4net;
 using System.Threading;
@@ -37,8 +35,7 @@ namespace SuperPutty.Scp
 
                     this.StartTime = DateTime.Now;
 
-                    this.thread = new Thread(this.DoTransfer);
-                    this.thread.IsBackground = false;
+                    this.thread = new Thread(this.DoTransfer) {IsBackground = false};
                     this.thread.Start();
 
                     this.UpdateStatus(0, Status.Running, "Started transfer");

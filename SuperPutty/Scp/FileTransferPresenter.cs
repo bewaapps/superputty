@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using log4net;
 
 namespace SuperPutty.Scp
@@ -108,7 +105,7 @@ namespace SuperPutty.Scp
             this.ViewModel.FileTransfers.Add(new FileTransferViewItem(transfer));
 
             // hook for updates
-            transfer.Update += (transfer_Update);
+            transfer.Update += transfer_Update;
         }
 
         void transfer_Update(object sender, EventArgs e)
@@ -159,7 +156,7 @@ namespace SuperPutty.Scp
                 if (FileTransfer.CanRestart(transfer.TransferStatus))
                 {
                     this.fileTranfers.Remove(id);
-                    transfer.Update -= (transfer_Update);
+                    transfer.Update -= transfer_Update;
                     int idx = this.ViewModel.FindIndexById(id);
                     if (idx != -1)
                     {

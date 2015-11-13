@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using log4net;
 
@@ -52,15 +50,7 @@ namespace SuperPutty.Utils
         /// <returns></returns>
         public static bool IsVisibleOnAnyScreen(Rectangle rect)
         {
-            foreach (Screen screen in Screen.AllScreens)
-            {
-                if (screen.WorkingArea.IntersectsWith(rect))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return Screen.AllScreens.Any(screen => screen.WorkingArea.IntersectsWith(rect));
         }
 
         public static T SafeParseEnum<T>(string val, bool ignoreCase, T defaultVal) 

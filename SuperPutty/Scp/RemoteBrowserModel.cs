@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using log4net;
+﻿using log4net;
 using SuperPutty.Data;
 using System.IO;
 
@@ -29,9 +25,11 @@ namespace SuperPutty.Scp
 
             if (session == null || session.Username == null)
             {
-                result = new ListDirectoryResult(path);
-                result.ErrorMsg = "Session invalid";
-                result.StatusCode = ResultStatusCode.Error;
+                result = new ListDirectoryResult(path)
+                {
+                    ErrorMsg = "Session invalid",
+                    StatusCode = ResultStatusCode.Error
+                };
             }
             else
             {

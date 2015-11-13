@@ -22,6 +22,7 @@ using System;
 using log4net;
 using System.ComponentModel;
 using SuperPutty.Data;
+using SuperPutty.Gui;
 
 namespace SuperPutty.Scp
 {
@@ -45,14 +46,16 @@ namespace SuperPutty.Scp
             this.Session = session;
 
             this.FileTransferPresenter = fileTransferPresenter;
-            this.FileTransferPresenter.ViewModel.FileTransfers.ListChanged += (FileTransfers_ListChanged);
+            this.FileTransferPresenter.ViewModel.FileTransfers.ListChanged += FileTransfers_ListChanged;
 
-            this.BackgroundWorker = new BackgroundWorker();
-            this.BackgroundWorker.WorkerReportsProgress = true;
-            this.BackgroundWorker.WorkerSupportsCancellation = true;
-            this.BackgroundWorker.DoWork += (BackgroundWorker_DoWork);
-            this.BackgroundWorker.ProgressChanged += (BackgroundWorker_ProgressChanged);
-            this.BackgroundWorker.RunWorkerCompleted += (BackgroundWorker_RunWorkerCompleted);
+            this.BackgroundWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+            this.BackgroundWorker.DoWork += BackgroundWorker_DoWork;
+            this.BackgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
+            this.BackgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
 
             this.ViewModel = new BrowserViewModel
             {
@@ -135,7 +138,7 @@ namespace SuperPutty.Scp
                         this.ViewModel.Status = string.Format("{0} @ {1}", msg, DateTime.Now);
                         this.CurrentPath = result.Path;
                         this.ViewModel.CurrentPath = result.Path.Path;
-                        BrowserViewModel.UpdateList(this.ViewModel.Files, result.Files);
+                        BaseViewModel.UpdateList(this.ViewModel.Files, result.Files);
                         break;
                     case ResultStatusCode.Error:
                         string errMsg = result.ErrorMsg != null
